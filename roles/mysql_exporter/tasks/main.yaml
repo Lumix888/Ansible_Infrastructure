@@ -1,0 +1,54 @@
+- name: Install 'prometheus-mysqld-exporter'
+  apt:
+    name: 
+      - prometheus-mysqld-exporter
+      - python3-pymysql
+  no_log: true
+
+
+- name: Create MySQL exporter user
+  mysql_user:
+    name: exporter
+    password: "{{ mysql_exporter_pass }}"
+    priv: "*.*:PROCESS,REPLICATION CLIENT,SELECT"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  no_log: true
+  
+
+- name: Create directory
+  file:
+    path: /var/lib/prometheus
+    state: directory
+
+
+- name: Copy my.cnf.j2 to /var/lib/prometheus/.my.cnf
+  template:
+    src: my.cnf.j2
+    dest: /var/lib/prometheus/.my.cnf
+  no_log: yes 
+  notify:
+    - Restart mysqld exporter
+
+
+- name: Force all notified handlers to run at this point, not waiting for normal sync points
+  meta: flush_handlers
+
+
+- name: Update Prometheus MySQL exporter to export MySQL replication metrics
+  template:
+    src: prometheus-mysql-exporter.j2
+    dest: /etc/default/prometheus-mysqld-exporter
+  no_log: true
+  notify: 
+    - Restart mysqld exporter
+
+
+- name: Force all notified handlers to run at this point, not waiting for normal sync points
+  meta: flush_handlers
+
+
+- name: Start mysqld exporter
+  service:
+    name: prometheus-mysqld-exporter
+    state: started
+    enabled: yes

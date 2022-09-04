@@ -1,0 +1,89 @@
+- name: Install 'mysql-server'
+  apt:
+    name: mysql-server
+  no_log: true 
+  notify: Restart mysql
+
+
+- name: Install 'python3-mysql'
+  apt:
+    name: python3-pymysql
+  no_log: true 
+  
+
+- name: Copy the mysql config file and restart mysql server
+  template:
+    src: override.cnf.j2
+    dest: /etc/mysql/mysql.conf.d/override.cnf
+    mode: 0644
+  no_log: true  
+  notify: Restart mysql
+
+  
+- name: Start mysql server
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+
+
+- name: MySQL database
+  community.mysql.mysql_db:
+    name: "{{ mysql_database }}"   
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+
+- name: MySQL user for agama
+  community.mysql.mysql_user:
+    name: "{{ mysql_user }}"
+    password: "{{ mysql_password }}"
+    host: "%"
+    priv: "{{ mysql_database }}.*:ALL"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+
+- name: Execute handlers preemptively
+  meta: flush_handlers
+
+
+- name: MySQL user for replication
+  community.mysql.mysql_user:
+    name: "{{ mysql_replication_user }}"
+    password: "{{ mysql_replication_pass }}"
+    host: "%"
+    priv: "*.*:REPLICATION SLAVE"
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+
+
+- name: MySQL primary read only mode OFF
+  community.mysql.mysql_variables:
+    variable: read_only
+    value: 'OFF'
+    mode: persist
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  when: inventory_hostname == mysql_host
+  notify:
+    - Reset MySQL source
+    - Reset MySQL replica
+  tags: mx
+
+
+- name: MySQL replica read only mode ON
+  community.mysql.mysql_variables:
+    variable: read_only
+    value: 'ON'
+    mode: persist
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+  when: inventory_hostname != mysql_host
+  notify:
+    - Reset MySQL source
+    - Reset MySQL replica
+  tags: mx
+
+
+- name: Start mysql server     
+  service:
+    name: mysql
+    state: started
+    enabled: yes
+  become: yes

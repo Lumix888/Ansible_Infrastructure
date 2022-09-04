@@ -1,0 +1,20 @@
+- name: Docker package 
+  ansible.builtin.apt:
+    name:
+      - docker.io
+      - python3-docker
+  no_log: true
+
+
+- name: Log into DockerHub
+  community.docker.docker_login:
+    username: '{{ docker_user }}'
+    password: '{{ docker_pass }}'
+  no_log: True
+
+
+- name: Docker service
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: yes

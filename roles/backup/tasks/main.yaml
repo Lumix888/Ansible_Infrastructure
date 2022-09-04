@@ -1,0 +1,66 @@
+- name: duplicity install    
+  apt:
+    name: 
+      - duplicity
+  no_log: true 
+
+
+- name: New user backup and new keys
+  user:
+    name: "{{ mysql_backup_user }}"
+    home: /home/backup
+    shell: /bin/bash
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+  no_log: true
+
+
+- name: create directory /home/backup/ on the remote server
+  file:
+    path: /home/backup/
+    state: directory
+    mode: 0744
+    owner: "{{ mysql_backup_user }}"
+  no_log: true 
+
+
+- name: Create the restore and .ssh directories
+  file:
+    path: /home/backup/{{ item }}
+    state: directory
+    mode: 0744
+    owner: "{{ mysql_backup_user }}"
+  loop:
+    - restore
+    - .ssh
+  no_log: true 
+
+
+- name: Create a directories mysql  inside restore
+  ansible.builtin.file:
+    path: /home/backup/restore/{{ item }}
+    state: directory
+    owner: "{{ mysql_backup_user }}"
+    mode: 0744
+  loop:
+    - mysql
+    - influxdb
+  no_log: true 
+
+
+- name: update ssh known hosts  /home/backup/.ssh/known_hosts
+  template: 
+    src: known_hosts.j2
+    dest: /home/backup/.ssh/known_hosts
+    mode: 0766
+    owner: root
+  no_log: true 
+
+
+- name: Ensure cron is running
+  service:
+    name: cron
+    state: started
+    enabled: yes
+

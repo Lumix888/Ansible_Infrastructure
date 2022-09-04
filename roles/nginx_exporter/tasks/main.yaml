@@ -1,0 +1,31 @@
+- name: install prometheus nginx exporter
+  apt:
+    name: prometheus-nginx-exporter
+  no_log: true 
+  
+
+- name: Copy exporter to /etc/nginx/sites-enabled/exporter
+  template:
+    src: exporter.j2
+    dest: /etc/nginx/sites-enabled/exporter
+  no_log: true 
+  notify: 
+    - restart nginx
+    - reload systemd
+    - restart nginx exporter
+
+
+- name: Execute handlers preemptively
+  meta: flush_handlers
+
+
+- name: start nginx 
+  service:
+    name: nginx
+    state: started
+
+
+- name: Start nginx exporter
+  service:
+    name: prometheus-nginx-exporter
+    state: started

@@ -1,0 +1,3 @@
+database_url=http://influxdb.{{domain}}:{{pinger_port}}
+database_name={{influx_database_name}}
+targets={%- for target in ping_targets -%}{{target}},{%- endfor -%}

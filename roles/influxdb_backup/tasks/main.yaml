@@ -1,0 +1,17 @@
+- name: create directory /home/backup/influxdb
+  file:
+    path: /home/backup/influxdb
+    state: directory
+    owner: backup
+    mode: 0755
+  no_log: true 
+
+
+- name: Copy influxdb cron
+  template:
+    src: influxdb-backup.j2
+    dest: /etc/cron.d/influxdb-backup
+    owner: root
+    group: root
+    mode: 0755
+  no_log: true 

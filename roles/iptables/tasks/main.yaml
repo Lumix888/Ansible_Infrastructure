@@ -1,0 +1,33 @@
+- name: Install iptables-persistent
+  apt:
+    name:
+      - iptables-persistent
+    state: present
+  no_log: true 
+
+
+- name: fix ssl handshake docker
+  template:
+    src: iptables.mangle.j2
+    dest: /etc/iptables/rules.v4
+  no_log: true 
+
+
+- name: Sleep for 10 seconds and continue with play
+  wait_for:
+    timeout: 10
+
+
+- name: Check if  iptables-persistent (netfilter-persistent) is started and if it is not, start it
+  service:
+    name: netfilter-persistent
+    state: started
+    enabled: yes
+
+
+- name: load iptable-mangle config
+  community.general.iptables_state:
+    state: restored
+    path: /etc/iptables/rules.v4
+    table: mangle
+  no_log: true 

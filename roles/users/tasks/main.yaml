@@ -1,0 +1,22 @@
+- name: Add user 'aaa' #(GitHub username: aaa)
+  user:
+    name: aaa
+
+
+- name: Add user 'bbb' #(GitHub username: bbb)
+  user:
+    name: bbb
+
+
+- name: Set keys for aaa
+  authorized_key:
+    user: aaa
+    state: present
+    key: https://github.com/aaa.keys
+
+
+- name: Set keys for bbb
+  authorized_key:
+    user: bbb
+    state: present
+    key: https://github.com/bbb.keys

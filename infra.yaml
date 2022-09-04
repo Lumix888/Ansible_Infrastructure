@@ -1,0 +1,161 @@
+---
+  
+  - name: Collect info about all VMs
+    hosts: all
+    become: yes    
+    gather_facts: yes
+    tasks:
+      - setup:
+    tags:
+      - setup
+  
+  
+  - name: Init
+    hosts: all
+    gather_facts: no
+    become: yes
+    roles:
+      - init
+    tags: 
+      - init
+
+
+  - name: Bind9 DNS server
+    hosts: dns_servers
+    gather_facts: yes
+    become: yes
+    roles:
+      - bind
+      - bind_exporter
+    tags:
+      - bind
+
+
+  - name: Iptables
+    hosts: all
+    gather_facts: no
+    become: yes
+    roles:
+      - iptables
+    tags: 
+      - ipta
+
+
+  - name: Backup
+    hosts: all
+    gather_facts: yes
+    become: yes
+    roles:
+      - backup
+    tags: 
+      - back
+    
+
+  - name: Rsyslog
+    hosts: all
+    gather_facts: no
+    become: yes
+    roles:
+      - rsyslog
+    tags:
+      - rsys
+
+
+  - name: Nginx
+    hosts: all
+    gather_facts: no
+    become: yes
+    roles:
+      - nginx
+      - nginx_exporter
+    tags:
+      - ngin
+
+
+  - name: Prometheus
+    hosts: prometheus
+    gather_facts: no
+    become: yes
+    roles:
+      - prometheus   
+    tags:
+      - prom
+ 
+
+  - name: Prometheus node exporter
+    hosts: all
+    gather_facts: no
+    become: yes
+    roles:
+      - node_exporter
+    tags:
+      - prom
+
+
+  - name: InfluxDB and Telegraf
+    hosts: influxdb
+    gather_facts: no
+    become: yes
+    roles:
+      - influxdb
+      - influxdb_backup
+      - influxdb_exporter
+    tags:
+      - infl
+      - back
+
+
+  - name: Pinger script
+    hosts: pinger
+    gather_facts: no
+    become: yes
+    roles:
+      - pinger
+    tags: 
+      - ping
+
+
+  - name: Database server
+    hosts: db_servers
+    gather_facts: yes
+    become: yes
+    roles:
+      - mysql
+      - mysql_backup
+      - mysql_exporter
+    tags: 
+      - mysq
+      - back
+
+
+  - name: Grafana 
+    hosts: grafana
+    gather_facts: no
+    become: yes
+    roles:
+      - docker
+      - grafana
+    tags:
+      - graf
+
+
+  - name: Agama
+    hosts: agama
+    gather_facts: no
+    become: yes
+    roles:
+      - docker
+      - agama
+    tags:
+      - agam
+
+
+  - name: Install and configure loadbalancer for agama
+    hosts: agama
+    gather_facts: yes
+    become: yes
+    roles:
+      - keepalived
+      - haproxy
+    tags:
+      - load

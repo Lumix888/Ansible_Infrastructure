@@ -1,0 +1,23 @@
+- name: Install dependencies
+  apt: 
+    name:
+        - uwsgi
+        - uwsgi-plugin-python3 
+    state: present
+
+
+- name: Set config and add uwsgi config file
+  ansible.builtin.template:
+    src: agama.ini
+    dest: /etc/uwsgi/apps-enabled/agama.ini
+    owner: agama
+    mode: '0744'
+  notify:
+    - Restart uwsgi
+
+
+- name: Ensure that uwsgi is started
+  service:
+    name: uwsgi
+    state: started
+    enabled: yes

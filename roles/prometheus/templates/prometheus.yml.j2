@@ -1,0 +1,77 @@
+# Sample config for Prometheus.
+
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    scrape_timeout: 5s
+    metrics_path: /prometheus/metrics
+    static_configs:
+      - targets:
+        {% for vm in groups['prometheus'] %}
+        - {{ vm }}:{{ prometheus_port }}
+        {% endfor %}
+
+
+  - job_name: influxdb + telegraph
+    static_configs:
+      - targets:
+        {% for vm in groups['influxdb'] %}
+        - {{ vm }}:{{ influxdb_port }}
+        {% endfor %}
+
+
+  - job_name: mysql-exporter
+    static_configs:
+      - targets:
+        {% for vm in groups['db_servers'] %}
+        - {{ vm }}:{{ mysql_exporter_port }}
+        {% endfor %}
+
+  - job_name: bind9-exporter
+    static_configs:
+      - targets:
+        {% for vm in groups['dns_servers'] %}
+        - {{ vm }}:{{ bind_exporter_port }}
+        {% endfor %}
+
+  - job_name: nginx-exporter
+    static_configs:
+      - targets:
+        {% for vm in groups['all'] %}
+        - {{ vm }}:{{ nginx_exporter_port }}
+        {% endfor %}
+
+  - job_name: node-exporter
+    static_configs:
+      - targets:
+        {% for vm in groups['all'] %}
+        - {{ vm }}:{{ node_exporter_port }}
+        {% endfor %}
+
+  - job_name: influxdb_exporter
+    static_configs:
+      - targets:
+        {% for vm in groups['influxdb'] %}
+        - {{ vm }}:{{ influxdb_exporter_port }}
+        {% endfor %}
+        
+    
+  - job_name: keepalived_exporter
+    static_configs:
+      - targets:
+        {% for vm in groups['agama'] %}
+        - {{ vm }}:{{ keepalived_exporter_port }}
+        {% endfor %}
+
+
+  - job_name: haproxy_exporter
+    static_configs:
+      - targets:
+        {% for vm in groups['agama'] %}
+        - {{ vm }}:{{ haproxy_exporter_port }}
+        {% endfor %}
+        

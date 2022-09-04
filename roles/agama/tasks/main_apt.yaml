@@ -1,0 +1,31 @@
+#agama not in docker
+
+- name: Add user 'agama'
+  user:
+    name: agama
+
+
+- name: create a directory for AGAMA app
+  file:
+   path: /opt/agama
+   owner: agama
+   mode: '0744'
+   state: directory
+   recurse: yes
+
+
+- name: install dependencies
+  apt:
+    name:
+     - python3-flask-sqlalchemy
+     - python3-pymysql 
+    state: present
+    update_cache: yes
+
+
+- name: download AGAMA
+  get_url:
+    url: https://raw.githubusercontent.com/hudolejev/agama/master/agama.py
+    dest: /opt/agama/agama.py
+    owner: agama
+    mode: '0744'

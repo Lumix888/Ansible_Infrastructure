@@ -1,0 +1,2033 @@
+T 18 jaan  2022 10:36:41 EET
++ hostname
+Ubuntu1
++ ansible-playbook infra.yaml --diff
+
+PLAY [Collect info about all VMs] **********************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+TASK [setup] *******************************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+PLAY [Init] ********************************************************************
+
+TASK [init : Update APT cache] *************************************************
+ok: [Lumix888-2]
+changed: [Lumix888-1]
+changed: [Lumix888-3]
+
+PLAY [Bind9 DNS server] ********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind : Install 'bind9'] **************************************************
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [bind : Ensure bind9 is running] ******************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [bind : Configure master file] ********************************************
+skipping: [Lumix888-1]
+skipping: [Lumix888-2]
+changed: [Lumix888-3]
+
+TASK [bind : Configure reverse master file] ************************************
+skipping: [Lumix888-1]
+skipping: [Lumix888-2]
+changed: [Lumix888-3]
+
+TASK [bind : Copy local conf file to DNS server] *******************************
+changed: [Lumix888-1]
+changed: [Lumix888-3]
+changed: [Lumix888-2]
+
+TASK [bind : Update named.conf.options] ****************************************
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [bind : Copy resolv.conf to DNS server] ***********************************
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [bind : Stop service systemd-resolved] ************************************
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [bind : meta flush] *******************************************************
+
+RUNNING HANDLER [bind : Restart bind9] *****************************************
+changed: [Lumix888-2]
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+
+RUNNING HANDLER [bind : rndc reload] *******************************************
+changed: [Lumix888-1]
+changed: [Lumix888-3]
+changed: [Lumix888-2]
+
+TASK [bind : Sleep for 10 seconds and continue with play] **********************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind : Ensure bind9 is running] ******************************************
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+
+TASK [bind : Set A records] ****************************************************
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1]
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2]
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3]
+
+TASK [bind : Set CNAME records] ************************************************
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1]
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2]
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3]
+
+TASK [bind : Sleep for 10 seconds and continue with play] **********************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+
+TASK [bind : Check if the service is started and if it is not, start it] *******
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind_exporter : Install 'prometheus-bind-exporter'] **********************
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [bind_exporter : Enable Bind9 exporter] ***********************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+PLAY [Iptables] ****************************************************************
+
+TASK [iptables : Install iptables-persistent] **********************************
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [iptables : fix ssl handshake docker] *************************************
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [iptables : Sleep for 10 seconds and continue with play] ******************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [iptables : Check if  iptables-persistent (netfilter-persistent) is started and if it is not, start it] ***
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+
+TASK [iptables : load iptable-mangle config] ***********************************
+[WARNING]: Attempts to restore iptables state without rollback in case of
+mistake may lead the ansible controller to loose access to the hosts and never
+regain it before fixing firewall rules through a serial console, or any other
+way except SSH. Please set task attribute 'poll' (=15) to 0, and 'async' (=0)
+to a value >2 and not greater than 'ansible_timeout' (=50) (recommended).
+[WARNING]: Attempts to restore iptables state without rollback in case of
+mistake may lead the ansible controller to loose access to the hosts and never
+regain it before fixing firewall rules through a serial console, or any other
+way except SSH. Please set task attribute 'poll' (=15) to 0, and 'async' (=0)
+to a value >2 and not greater than 'ansible_timeout' (=50) (recommended).
+[WARNING]: Attempts to restore iptables state without rollback in case of
+mistake may lead the ansible controller to loose access to the hosts and never
+regain it before fixing firewall rules through a serial console, or any other
+way except SSH. Please set task attribute 'poll' (=15) to 0, and 'async' (=0)
+to a value >2 and not greater than 'ansible_timeout' (=50) (recommended).
+changed: [Lumix888-2]
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+
+PLAY [Backup] ******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [backup : duplicity install] **********************************************
+changed: [Lumix888-3]
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [backup : New user backup and new keys] ***********************************
+changed: [Lumix888-3]
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [backup : create directory /home/backup/ on the remote server] ************
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [backup : Create the restore and .ssh directories] ************************
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-1] => (item=None)
+changed: [Lumix888-2] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3]
+changed: [Lumix888-1] => (item=None)
+changed: [Lumix888-1]
+changed: [Lumix888-2] => (item=None)
+changed: [Lumix888-2]
+
+TASK [backup : Create a directories mysql  inside restore] *********************
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-1] => (item=None)
+changed: [Lumix888-2] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3]
+changed: [Lumix888-2] => (item=None)
+changed: [Lumix888-2]
+changed: [Lumix888-1] => (item=None)
+changed: [Lumix888-1]
+
+TASK [backup : update ssh known hosts  /home/backup/.ssh/known_hosts] **********
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [backup : Ensure cron is running] *****************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+PLAY [Rsyslog] *****************************************************************
+
+TASK [rsyslog : Install Rsyslog] ***********************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [rsyslog : Reconfigure Rsyslog] *******************************************
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [rsyslog : start rsyslog] *************************************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+RUNNING HANDLER [rsyslog : Restart Rsyslog] ************************************
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+PLAY [Nginx] *******************************************************************
+
+TASK [nginx : Install nginx] ***************************************************
+changed: [Lumix888-3]
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [nginx : Index] ***********************************************************
+changed: [Lumix888-3]
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [nginx : Nginx as frontend, Nginx configuration, add Prometheus ports] ****
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [nginx : Start and enable nginx] ******************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+TASK [nginx : Start nginx] *****************************************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [nginx_exporter : install prometheus nginx exporter] **********************
+changed: [Lumix888-1]
+changed: [Lumix888-3]
+changed: [Lumix888-2]
+
+TASK [nginx_exporter : Copy exporter to /etc/nginx/sites-enabled/exporter] *****
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [nginx_exporter : Execute handlers preemptively] **************************
+
+RUNNING HANDLER [nginx : Restart nginx] ****************************************
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+RUNNING HANDLER [nginx_exporter : reload systemd] ******************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+changed: [Lumix888-3]
+
+RUNNING HANDLER [nginx_exporter : restart nginx] *******************************
+changed: [Lumix888-1]
+changed: [Lumix888-3]
+changed: [Lumix888-2]
+
+RUNNING HANDLER [nginx_exporter : restart nginx exporter] **********************
+changed: [Lumix888-2]
+changed: [Lumix888-3]
+changed: [Lumix888-1]
+
+TASK [nginx_exporter : start nginx] ********************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [nginx_exporter : Start nginx exporter] ***********************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+PLAY [Prometheus] **************************************************************
+
+TASK [prometheus : install prometheus] *****************************************
+changed: [Lumix888-3]
+
+TASK [prometheus : copy prometheus.yml.j2 template] ****************************
+changed: [Lumix888-3]
+
+TASK [prometheus : copy prometheus.j2 template] ********************************
+changed: [Lumix888-3]
+
+RUNNING HANDLER [prometheus : Restart prometheus] ******************************
+changed: [Lumix888-3]
+
+PLAY [Prometheus node exporter] ************************************************
+
+TASK [node_exporter : install prometheus node exporter] ************************
+ok: [Lumix888-3]
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [node_exporter : Verify prometheus node exporter service] *****************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+PLAY [InfluxDB and Telegraf] ***************************************************
+
+TASK [influxdb : Add influx and telegraf key] **********************************
+changed: [Lumix888-3]
+
+TASK [influxdb : Add influx and telegraf repository into sources list] *********
+changed: [Lumix888-3]
+
+TASK [influxdb : Install 'influxdb'] *******************************************
+changed: [Lumix888-3]
+
+TASK [influxdb : Ensure influxdb is running] ***********************************
+changed: [Lumix888-3]
+
+TASK [influxdb : Install 'telegraf'] *******************************************
+changed: [Lumix888-3]
+
+TASK [influxdb : Ensure Telegraf is running] ***********************************
+ok: [Lumix888-3]
+
+TASK [influxdb : Copy influxdb.conf.j2 into /etc/influxdb/] ********************
+changed: [Lumix888-3]
+
+TASK [influxdb : Copy telegraf.conf.j2 into /etc/telegraf/telegraf.conf.j2] ****
+changed: [Lumix888-3]
+
+TASK [influxdb : Execute handlers preemptively] ********************************
+
+RUNNING HANDLER [influxdb : Restart telegraf] **********************************
+changed: [Lumix888-3]
+
+RUNNING HANDLER [influxdb : Restart influxdb] **********************************
+changed: [Lumix888-3]
+
+TASK [influxdb_backup : create directory /home/backup/influxdb] ****************
+changed: [Lumix888-3]
+
+TASK [influxdb_backup : Copy influxdb cron] ************************************
+changed: [Lumix888-3]
+
+TASK [influxdb_exporter : Download 'influxdb-stats-exporter'] ******************
+changed: [Lumix888-3]
+
+TASK [influxdb_exporter : Giving permission to influx_stats_exporter_linux_amd64] ***
+changed: [Lumix888-3]
+
+TASK [influxdb_exporter : Making a service unit] *******************************
+changed: [Lumix888-3]
+
+TASK [influxdb_exporter : Ensure influxdb-stats-exporter is running] ***********
+changed: [Lumix888-3]
+
+RUNNING HANDLER [influxdb_exporter : Reload systemd] ***************************
+changed: [Lumix888-3]
+
+RUNNING HANDLER [influxdb_exporter : Restart prometheus-influxdb-stats-exporter] ***
+changed: [Lumix888-3]
+
+PLAY [Pinger script] ***********************************************************
+
+TASK [pinger : Add user pinger] ************************************************
+changed: [Lumix888-3]
+
+TASK [pinger : Install 'fping'] ************************************************
+changed: [Lumix888-3]
+
+TASK [pinger : Ensure pinger has directory] ************************************
+changed: [Lumix888-3]
+
+TASK [pinger : place pinger.sh template into /usr/local/bin/pinger] ************
+changed: [Lumix888-3]
+
+TASK [pinger : Copy pinger.conf.j2 template into /etc/pinger/pinger.conf] ******
+changed: [Lumix888-3]
+
+TASK [pinger : copy pinger service config] *************************************
+changed: [Lumix888-3]
+
+TASK [pinger : Ensure pinger is running] ***************************************
+changed: [Lumix888-3]
+
+RUNNING HANDLER [pinger : Reload daemons] **************************************
+changed: [Lumix888-3]
+
+RUNNING HANDLER [pinger : Restart pinger] **************************************
+changed: [Lumix888-3]
+
+PLAY [Database server] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : Install 'mysql-server'] ******************************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [mysql : Install 'python3-mysql'] *****************************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [mysql : Copy the mysql config file and restart mysql server] *************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [mysql : Start mysql server] **********************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql : MySQL database] **************************************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [mysql : MySQL user for agama] ********************************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [mysql : Execute handlers preemptively] ***********************************
+
+RUNNING HANDLER [mysql_exporter : Restart mysql] *******************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [mysql : MySQL user for replication] **************************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [mysql : MySQL primary read only mode OFF] ********************************
+skipping: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [mysql : MySQL replica read only mode ON] *********************************
+skipping: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [mysql : Start mysql server] **********************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_backup : create directory /home/backup/mysql] **********************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [mysql_backup : Create MySQL backup user] *********************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [mysql_backup : Copy MySQL configuration file] ****************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [mysql_backup : Copy mysql cron] ******************************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [mysql_exporter : Install 'prometheus-mysqld-exporter'] *******************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [mysql_exporter : Create MySQL exporter user] *****************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [mysql_exporter : Create directory] ***************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_exporter : Copy my.cnf.j2 to /var/lib/prometheus/.my.cnf] **********
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [mysql_exporter : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+RUNNING HANDLER [mysql : Reset MySQL source] ***********************************
+skipping: [Lumix888-2] => (item=stopreplica) 
+skipping: [Lumix888-2] => (item=resetprimary) 
+ok: [Lumix888-1] => (item=stopreplica)
+changed: [Lumix888-1] => (item=resetprimary)
+
+RUNNING HANDLER [mysql : Reset MySQL replica] **********************************
+skipping: [Lumix888-1] => (item=stopreplica) 
+skipping: [Lumix888-1] => (item=changeprimary) 
+skipping: [Lumix888-1] => (item=resetreplica) 
+skipping: [Lumix888-1] => (item=startreplica) 
+ok: [Lumix888-2] => (item=stopreplica)
+changed: [Lumix888-2] => (item=changeprimary)
+changed: [Lumix888-2] => (item=resetreplica)
+changed: [Lumix888-2] => (item=startreplica)
+
+RUNNING HANDLER [mysql_exporter : Restart mysqld exporter] *********************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [mysql_exporter : Update Prometheus MySQL exporter to export MySQL replication metrics] ***
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [mysql_exporter : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+RUNNING HANDLER [mysql_exporter : Restart mysqld exporter] *********************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [mysql_exporter : Start mysqld exporter] **********************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+PLAY [Grafana] *****************************************************************
+
+TASK [docker : Docker package] *************************************************
+changed: [Lumix888-3]
+
+TASK [docker : Log into DockerHub] *********************************************
+changed: [Lumix888-3]
+
+TASK [docker : Docker service] *************************************************
+ok: [Lumix888-3]
+
+TASK [grafana : Create directories grafana] ************************************
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3]
+
+TASK [grafana : Grafana configuration] *****************************************
+changed: [Lumix888-3]
+
+TASK [grafana : Copy datasource.yaml to /opt/grafana/provisioning/datasources/datasource.yaml] ***
+changed: [Lumix888-3]
+
+TASK [grafana : Copy dashboard.yaml to /opt/grafana/provisioning/dashboards/dashboard.yaml] ***
+changed: [Lumix888-3]
+
+TASK [grafana : Copy grafana dashboards] ***************************************
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3] => (item=None)
+changed: [Lumix888-3]
+
+TASK [grafana : Grafana Docker container] **************************************
+changed: [Lumix888-3]
+
+RUNNING HANDLER [grafana : Restart grafana docker] *****************************
+changed: [Lumix888-3]
+
+PLAY [Agama] *******************************************************************
+
+TASK [docker : Docker package] *************************************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [docker : Log into DockerHub] *********************************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [docker : Docker service] *************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [agama : Creating directory /opt/agama] ***********************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [agama : Download agama container file] ***********************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [agama : Build Docker image from the file] ********************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [agama : Create Agama Docker container] ***********************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [agama : Create Agama second container] ***********************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+PLAY [Install and configure loadbalancer for agama] ****************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [keepalived : Install keepalived] *****************************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [keepalived : New user keepalived] ****************************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [keepalived : Copy keepalived conf] ***************************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [keepalived : Copy ha88] **************************************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [keepalived : start keepalived] *******************************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [keepalived : Download keepalived exporter and unarchive] *****************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [keepalived : Create keepalived prometheus exporter service] **************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [keepalived : Verify that keepalived exporter is running] *****************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [haproxy : Install haproxy] ***********************************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+TASK [haproxy : Copy haproxy.conf] *********************************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [haproxy : Copy prometheus-haproxy-exporter] ******************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+TASK [haproxy : start haproxy] *************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [haproxy : start haproxy exporter] ****************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+RUNNING HANDLER [keepalived : Reload daemons] **********************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+RUNNING HANDLER [keepalived : Restart keepalived_exporter] *********************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+RUNNING HANDLER [keepalived : Restart keepalived] ******************************
+changed: [Lumix888-1]
+changed: [Lumix888-2]
+
+RUNNING HANDLER [haproxy : Restart haproxy] ************************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+RUNNING HANDLER [haproxy : Restart haproxy-exporter] ***************************
+changed: [Lumix888-2]
+changed: [Lumix888-1]
+
+PLAY RECAP *********************************************************************
+Lumix888-1                  : ok=101  changed=72   unreachable=0    failed=0    skipped=6    rescued=0    ignored=0   
+Lumix888-2                  : ok=101  changed=71   unreachable=0    failed=0    skipped=6    rescued=0    ignored=0   
+Lumix888-3                  : ok=95   changed=72   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
++ ansible-playbook infra.yaml --diff
+
+PLAY [Collect info about all VMs] **********************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+
+TASK [setup] *******************************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+PLAY [Init] ********************************************************************
+
+TASK [init : Update APT cache] *************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+PLAY [Bind9 DNS server] ********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [bind : Install 'bind9'] **************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [bind : Ensure bind9 is running] ******************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [bind : Configure master file] ********************************************
+skipping: [Lumix888-1]
+skipping: [Lumix888-2]
+ok: [Lumix888-3]
+
+TASK [bind : Configure reverse master file] ************************************
+skipping: [Lumix888-1]
+skipping: [Lumix888-2]
+ok: [Lumix888-3]
+
+TASK [bind : Copy local conf file to DNS server] *******************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind : Update named.conf.options] ****************************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [bind : Copy resolv.conf to DNS server] ***********************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind : Stop service systemd-resolved] ************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+TASK [bind : meta flush] *******************************************************
+
+TASK [bind : Sleep for 10 seconds and continue with play] **********************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [bind : Ensure bind9 is running] ******************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind : Set A records] ****************************************************
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1]
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2]
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3]
+
+TASK [bind : Set CNAME records] ************************************************
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1]
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2]
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3]
+
+TASK [bind : Sleep for 10 seconds and continue with play] **********************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+TASK [bind : Check if the service is started and if it is not, start it] *******
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind_exporter : Install 'prometheus-bind-exporter'] **********************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind_exporter : Enable Bind9 exporter] ***********************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+PLAY [Iptables] ****************************************************************
+
+TASK [iptables : Install iptables-persistent] **********************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [iptables : fix ssl handshake docker] *************************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [iptables : Sleep for 10 seconds and continue with play] ******************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [iptables : Check if  iptables-persistent (netfilter-persistent) is started and if it is not, start it] ***
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [iptables : load iptable-mangle config] ***********************************
+[WARNING]: Attempts to restore iptables state without rollback in case of
+mistake may lead the ansible controller to loose access to the hosts and never
+regain it before fixing firewall rules through a serial console, or any other
+way except SSH. Please set task attribute 'poll' (=15) to 0, and 'async' (=0)
+to a value >2 and not greater than 'ansible_timeout' (=50) (recommended).
+[WARNING]: Attempts to restore iptables state without rollback in case of
+mistake may lead the ansible controller to loose access to the hosts and never
+regain it before fixing firewall rules through a serial console, or any other
+way except SSH. Please set task attribute 'poll' (=15) to 0, and 'async' (=0)
+to a value >2 and not greater than 'ansible_timeout' (=50) (recommended).
+[WARNING]: Attempts to restore iptables state without rollback in case of
+mistake may lead the ansible controller to loose access to the hosts and never
+regain it before fixing firewall rules through a serial console, or any other
+way except SSH. Please set task attribute 'poll' (=15) to 0, and 'async' (=0)
+to a value >2 and not greater than 'ansible_timeout' (=50) (recommended).
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+PLAY [Backup] ******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [backup : duplicity install] **********************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [backup : New user backup and new keys] ***********************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [backup : create directory /home/backup/ on the remote server] ************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [backup : Create the restore and .ssh directories] ************************
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-1] => (item=None)
+ok: [Lumix888-2] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3]
+ok: [Lumix888-2] => (item=None)
+ok: [Lumix888-2]
+ok: [Lumix888-1] => (item=None)
+ok: [Lumix888-1]
+
+TASK [backup : Create a directories mysql  inside restore] *********************
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-1] => (item=None)
+ok: [Lumix888-2] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-2] => (item=None)
+ok: [Lumix888-3]
+ok: [Lumix888-1] => (item=None)
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [backup : update ssh known hosts  /home/backup/.ssh/known_hosts] **********
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+TASK [backup : Ensure cron is running] *****************************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+PLAY [Rsyslog] *****************************************************************
+
+TASK [rsyslog : Install Rsyslog] ***********************************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [rsyslog : Reconfigure Rsyslog] *******************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [rsyslog : start rsyslog] *************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+PLAY [Nginx] *******************************************************************
+
+TASK [nginx : Install nginx] ***************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+TASK [nginx : Index] ***********************************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [nginx : Nginx as frontend, Nginx configuration, add Prometheus ports] ****
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [nginx : Start and enable nginx] ******************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [nginx : Start nginx] *****************************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+
+TASK [nginx_exporter : install prometheus nginx exporter] **********************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [nginx_exporter : Copy exporter to /etc/nginx/sites-enabled/exporter] *****
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [nginx_exporter : Execute handlers preemptively] **************************
+
+TASK [nginx_exporter : start nginx] ********************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [nginx_exporter : Start nginx exporter] ***********************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+PLAY [Prometheus] **************************************************************
+
+TASK [prometheus : install prometheus] *****************************************
+ok: [Lumix888-3]
+
+TASK [prometheus : copy prometheus.yml.j2 template] ****************************
+ok: [Lumix888-3]
+
+TASK [prometheus : copy prometheus.j2 template] ********************************
+ok: [Lumix888-3]
+
+PLAY [Prometheus node exporter] ************************************************
+
+TASK [node_exporter : install prometheus node exporter] ************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [node_exporter : Verify prometheus node exporter service] *****************
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+
+PLAY [InfluxDB and Telegraf] ***************************************************
+
+TASK [influxdb : Add influx and telegraf key] **********************************
+ok: [Lumix888-3]
+
+TASK [influxdb : Add influx and telegraf repository into sources list] *********
+ok: [Lumix888-3]
+
+TASK [influxdb : Install 'influxdb'] *******************************************
+ok: [Lumix888-3]
+
+TASK [influxdb : Ensure influxdb is running] ***********************************
+ok: [Lumix888-3]
+
+TASK [influxdb : Install 'telegraf'] *******************************************
+ok: [Lumix888-3]
+
+TASK [influxdb : Ensure Telegraf is running] ***********************************
+ok: [Lumix888-3]
+
+TASK [influxdb : Copy influxdb.conf.j2 into /etc/influxdb/] ********************
+ok: [Lumix888-3]
+
+TASK [influxdb : Copy telegraf.conf.j2 into /etc/telegraf/telegraf.conf.j2] ****
+ok: [Lumix888-3]
+
+TASK [influxdb : Execute handlers preemptively] ********************************
+
+TASK [influxdb_backup : create directory /home/backup/influxdb] ****************
+ok: [Lumix888-3]
+
+TASK [influxdb_backup : Copy influxdb cron] ************************************
+ok: [Lumix888-3]
+
+TASK [influxdb_exporter : Download 'influxdb-stats-exporter'] ******************
+ok: [Lumix888-3]
+
+TASK [influxdb_exporter : Giving permission to influx_stats_exporter_linux_amd64] ***
+ok: [Lumix888-3]
+
+TASK [influxdb_exporter : Making a service unit] *******************************
+ok: [Lumix888-3]
+
+TASK [influxdb_exporter : Ensure influxdb-stats-exporter is running] ***********
+ok: [Lumix888-3]
+
+PLAY [Pinger script] ***********************************************************
+
+TASK [pinger : Add user pinger] ************************************************
+ok: [Lumix888-3]
+
+TASK [pinger : Install 'fping'] ************************************************
+ok: [Lumix888-3]
+
+TASK [pinger : Ensure pinger has directory] ************************************
+ok: [Lumix888-3]
+
+TASK [pinger : place pinger.sh template into /usr/local/bin/pinger] ************
+ok: [Lumix888-3]
+
+TASK [pinger : Copy pinger.conf.j2 template into /etc/pinger/pinger.conf] ******
+ok: [Lumix888-3]
+
+TASK [pinger : copy pinger service config] *************************************
+ok: [Lumix888-3]
+
+TASK [pinger : Ensure pinger is running] ***************************************
+ok: [Lumix888-3]
+
+PLAY [Database server] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : Install 'mysql-server'] ******************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql : Install 'python3-mysql'] *****************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql : Copy the mysql config file and restart mysql server] *************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql : Start mysql server] **********************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : MySQL database] **************************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : MySQL user for agama] ********************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql : Execute handlers preemptively] ***********************************
+
+TASK [mysql : MySQL user for replication] **************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : MySQL primary read only mode OFF] ********************************
+skipping: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql : MySQL replica read only mode ON] *********************************
+skipping: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : Start mysql server] **********************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql_backup : create directory /home/backup/mysql] **********************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_backup : Create MySQL backup user] *********************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql_backup : Copy MySQL configuration file] ****************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_backup : Copy mysql cron] ******************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_exporter : Install 'prometheus-mysqld-exporter'] *******************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql_exporter : Create MySQL exporter user] *****************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_exporter : Create directory] ***************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_exporter : Copy my.cnf.j2 to /var/lib/prometheus/.my.cnf] **********
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_exporter : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+TASK [mysql_exporter : Update Prometheus MySQL exporter to export MySQL replication metrics] ***
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql_exporter : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+TASK [mysql_exporter : Start mysqld exporter] **********************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+PLAY [Grafana] *****************************************************************
+
+TASK [docker : Docker package] *************************************************
+ok: [Lumix888-3]
+
+TASK [docker : Log into DockerHub] *********************************************
+ok: [Lumix888-3]
+
+TASK [docker : Docker service] *************************************************
+ok: [Lumix888-3]
+
+TASK [grafana : Create directories grafana] ************************************
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3]
+
+TASK [grafana : Grafana configuration] *****************************************
+ok: [Lumix888-3]
+
+TASK [grafana : Copy datasource.yaml to /opt/grafana/provisioning/datasources/datasource.yaml] ***
+ok: [Lumix888-3]
+
+TASK [grafana : Copy dashboard.yaml to /opt/grafana/provisioning/dashboards/dashboard.yaml] ***
+ok: [Lumix888-3]
+
+TASK [grafana : Copy grafana dashboards] ***************************************
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3]
+
+TASK [grafana : Grafana Docker container] **************************************
+ok: [Lumix888-3]
+
+PLAY [Agama] *******************************************************************
+
+TASK [docker : Docker package] *************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [docker : Log into DockerHub] *********************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [docker : Docker service] *************************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [agama : Creating directory /opt/agama] ***********************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [agama : Download agama container file] ***********************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [agama : Build Docker image from the file] ********************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [agama : Create Agama Docker container] ***********************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [agama : Create Agama second container] ***********************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+PLAY [Install and configure loadbalancer for agama] ****************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [keepalived : Install keepalived] *****************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [keepalived : New user keepalived] ****************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [keepalived : Copy keepalived conf] ***************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [keepalived : Copy ha88] **************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [keepalived : start keepalived] *******************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [keepalived : Download keepalived exporter and unarchive] *****************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [keepalived : Create keepalived prometheus exporter service] **************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [keepalived : Verify that keepalived exporter is running] *****************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [haproxy : Install haproxy] ***********************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [haproxy : Copy haproxy.conf] *********************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [haproxy : Copy prometheus-haproxy-exporter] ******************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [haproxy : start haproxy] *************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [haproxy : start haproxy exporter] ****************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+PLAY RECAP *********************************************************************
+Lumix888-1                  : ok=85   changed=0    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+Lumix888-2                  : ok=85   changed=0    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+Lumix888-3                  : ok=80   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
++ ansible all -b -m reboot -a test_command=uptime
+Lumix888-3 | CHANGED => {
+    "changed": true,
+    "elapsed": 38,
+    "rebooted": true
+}
+Lumix888-2 | CHANGED => {
+    "changed": true,
+    "elapsed": 48,
+    "rebooted": true
+}
+Lumix888-1 | CHANGED => {
+    "changed": true,
+    "elapsed": 50,
+    "rebooted": true
+}
++ ansible-playbook infra.yaml --diff
+
+PLAY [Collect info about all VMs] **********************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+TASK [setup] *******************************************************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+PLAY [Init] ********************************************************************
+
+TASK [init : Update APT cache] *************************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+
+PLAY [Bind9 DNS server] ********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [bind : Install 'bind9'] **************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+TASK [bind : Ensure bind9 is running] ******************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [bind : Configure master file] ********************************************
+skipping: [Lumix888-1]
+skipping: [Lumix888-2]
+ok: [Lumix888-3]
+
+TASK [bind : Configure reverse master file] ************************************
+skipping: [Lumix888-1]
+skipping: [Lumix888-2]
+ok: [Lumix888-3]
+
+TASK [bind : Copy local conf file to DNS server] *******************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind : Update named.conf.options] ****************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind : Copy resolv.conf to DNS server] ***********************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind : Stop service systemd-resolved] ************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind : meta flush] *******************************************************
+
+TASK [bind : Sleep for 10 seconds and continue with play] **********************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+
+TASK [bind : Ensure bind9 is running] ******************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [bind : Set A records] ****************************************************
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1]
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2]
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3]
+
+TASK [bind : Set CNAME records] ************************************************
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-1] => (item=None) 
+skipping: [Lumix888-1]
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2] => (item=None) 
+skipping: [Lumix888-2]
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3]
+
+TASK [bind : Sleep for 10 seconds and continue with play] **********************
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+
+TASK [bind : Check if the service is started and if it is not, start it] *******
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [bind_exporter : Install 'prometheus-bind-exporter'] **********************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [bind_exporter : Enable Bind9 exporter] ***********************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+PLAY [Iptables] ****************************************************************
+
+TASK [iptables : Install iptables-persistent] **********************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [iptables : fix ssl handshake docker] *************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [iptables : Sleep for 10 seconds and continue with play] ******************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [iptables : Check if  iptables-persistent (netfilter-persistent) is started and if it is not, start it] ***
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [iptables : load iptable-mangle config] ***********************************
+[WARNING]: Attempts to restore iptables state without rollback in case of
+mistake may lead the ansible controller to loose access to the hosts and never
+regain it before fixing firewall rules through a serial console, or any other
+way except SSH. Please set task attribute 'poll' (=15) to 0, and 'async' (=0)
+to a value >2 and not greater than 'ansible_timeout' (=50) (recommended).
+[WARNING]: Attempts to restore iptables state without rollback in case of
+mistake may lead the ansible controller to loose access to the hosts and never
+regain it before fixing firewall rules through a serial console, or any other
+way except SSH. Please set task attribute 'poll' (=15) to 0, and 'async' (=0)
+to a value >2 and not greater than 'ansible_timeout' (=50) (recommended).
+[WARNING]: Attempts to restore iptables state without rollback in case of
+mistake may lead the ansible controller to loose access to the hosts and never
+regain it before fixing firewall rules through a serial console, or any other
+way except SSH. Please set task attribute 'poll' (=15) to 0, and 'async' (=0)
+to a value >2 and not greater than 'ansible_timeout' (=50) (recommended).
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+
+PLAY [Backup] ******************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [backup : duplicity install] **********************************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [backup : New user backup and new keys] ***********************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [backup : create directory /home/backup/ on the remote server] ************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [backup : Create the restore and .ssh directories] ************************
+ok: [Lumix888-2] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-1] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3]
+ok: [Lumix888-2] => (item=None)
+ok: [Lumix888-2]
+ok: [Lumix888-1] => (item=None)
+ok: [Lumix888-1]
+
+TASK [backup : Create a directories mysql  inside restore] *********************
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-2] => (item=None)
+ok: [Lumix888-1] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3]
+ok: [Lumix888-2] => (item=None)
+ok: [Lumix888-1] => (item=None)
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [backup : update ssh known hosts  /home/backup/.ssh/known_hosts] **********
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [backup : Ensure cron is running] *****************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+PLAY [Rsyslog] *****************************************************************
+
+TASK [rsyslog : Install Rsyslog] ***********************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [rsyslog : Reconfigure Rsyslog] *******************************************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [rsyslog : start rsyslog] *************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+PLAY [Nginx] *******************************************************************
+
+TASK [nginx : Install nginx] ***************************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [nginx : Index] ***********************************************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [nginx : Nginx as frontend, Nginx configuration, add Prometheus ports] ****
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [nginx : Start and enable nginx] ******************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+TASK [nginx : Start nginx] *****************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+TASK [nginx_exporter : install prometheus nginx exporter] **********************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [nginx_exporter : Copy exporter to /etc/nginx/sites-enabled/exporter] *****
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+TASK [nginx_exporter : Execute handlers preemptively] **************************
+
+TASK [nginx_exporter : start nginx] ********************************************
+ok: [Lumix888-2]
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+
+TASK [nginx_exporter : Start nginx exporter] ***********************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+ok: [Lumix888-3]
+
+PLAY [Prometheus] **************************************************************
+
+TASK [prometheus : install prometheus] *****************************************
+ok: [Lumix888-3]
+
+TASK [prometheus : copy prometheus.yml.j2 template] ****************************
+ok: [Lumix888-3]
+
+TASK [prometheus : copy prometheus.j2 template] ********************************
+ok: [Lumix888-3]
+
+PLAY [Prometheus node exporter] ************************************************
+
+TASK [node_exporter : install prometheus node exporter] ************************
+ok: [Lumix888-3]
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [node_exporter : Verify prometheus node exporter service] *****************
+ok: [Lumix888-3]
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+PLAY [InfluxDB and Telegraf] ***************************************************
+
+TASK [influxdb : Add influx and telegraf key] **********************************
+ok: [Lumix888-3]
+
+TASK [influxdb : Add influx and telegraf repository into sources list] *********
+ok: [Lumix888-3]
+
+TASK [influxdb : Install 'influxdb'] *******************************************
+ok: [Lumix888-3]
+
+TASK [influxdb : Ensure influxdb is running] ***********************************
+ok: [Lumix888-3]
+
+TASK [influxdb : Install 'telegraf'] *******************************************
+ok: [Lumix888-3]
+
+TASK [influxdb : Ensure Telegraf is running] ***********************************
+ok: [Lumix888-3]
+
+TASK [influxdb : Copy influxdb.conf.j2 into /etc/influxdb/] ********************
+ok: [Lumix888-3]
+
+TASK [influxdb : Copy telegraf.conf.j2 into /etc/telegraf/telegraf.conf.j2] ****
+ok: [Lumix888-3]
+
+TASK [influxdb : Execute handlers preemptively] ********************************
+
+TASK [influxdb_backup : create directory /home/backup/influxdb] ****************
+ok: [Lumix888-3]
+
+TASK [influxdb_backup : Copy influxdb cron] ************************************
+ok: [Lumix888-3]
+
+TASK [influxdb_exporter : Download 'influxdb-stats-exporter'] ******************
+ok: [Lumix888-3]
+
+TASK [influxdb_exporter : Giving permission to influx_stats_exporter_linux_amd64] ***
+ok: [Lumix888-3]
+
+TASK [influxdb_exporter : Making a service unit] *******************************
+ok: [Lumix888-3]
+
+TASK [influxdb_exporter : Ensure influxdb-stats-exporter is running] ***********
+ok: [Lumix888-3]
+
+PLAY [Pinger script] ***********************************************************
+
+TASK [pinger : Add user pinger] ************************************************
+ok: [Lumix888-3]
+
+TASK [pinger : Install 'fping'] ************************************************
+ok: [Lumix888-3]
+
+TASK [pinger : Ensure pinger has directory] ************************************
+ok: [Lumix888-3]
+
+TASK [pinger : place pinger.sh template into /usr/local/bin/pinger] ************
+ok: [Lumix888-3]
+
+TASK [pinger : Copy pinger.conf.j2 template into /etc/pinger/pinger.conf] ******
+ok: [Lumix888-3]
+
+TASK [pinger : copy pinger service config] *************************************
+ok: [Lumix888-3]
+
+TASK [pinger : Ensure pinger is running] ***************************************
+ok: [Lumix888-3]
+
+PLAY [Database server] *********************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : Install 'mysql-server'] ******************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : Install 'python3-mysql'] *****************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql : Copy the mysql config file and restart mysql server] *************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : Start mysql server] **********************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : MySQL database] **************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql : MySQL user for agama] ********************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql : Execute handlers preemptively] ***********************************
+
+TASK [mysql : MySQL user for replication] **************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : MySQL primary read only mode OFF] ********************************
+skipping: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql : MySQL replica read only mode ON] *********************************
+skipping: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql : Start mysql server] **********************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_backup : create directory /home/backup/mysql] **********************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_backup : Create MySQL backup user] *********************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_backup : Copy MySQL configuration file] ****************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql_backup : Copy mysql cron] ******************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_exporter : Install 'prometheus-mysqld-exporter'] *******************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_exporter : Create MySQL exporter user] *****************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_exporter : Create directory] ***************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_exporter : Copy my.cnf.j2 to /var/lib/prometheus/.my.cnf] **********
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [mysql_exporter : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+TASK [mysql_exporter : Update Prometheus MySQL exporter to export MySQL replication metrics] ***
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [mysql_exporter : Force all notified handlers to run at this point, not waiting for normal sync points] ***
+
+TASK [mysql_exporter : Start mysqld exporter] **********************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+PLAY [Grafana] *****************************************************************
+
+TASK [docker : Docker package] *************************************************
+ok: [Lumix888-3]
+
+TASK [docker : Log into DockerHub] *********************************************
+ok: [Lumix888-3]
+
+TASK [docker : Docker service] *************************************************
+ok: [Lumix888-3]
+
+TASK [grafana : Create directories grafana] ************************************
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3]
+
+TASK [grafana : Grafana configuration] *****************************************
+ok: [Lumix888-3]
+
+TASK [grafana : Copy datasource.yaml to /opt/grafana/provisioning/datasources/datasource.yaml] ***
+ok: [Lumix888-3]
+
+TASK [grafana : Copy dashboard.yaml to /opt/grafana/provisioning/dashboards/dashboard.yaml] ***
+ok: [Lumix888-3]
+
+TASK [grafana : Copy grafana dashboards] ***************************************
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3] => (item=None)
+ok: [Lumix888-3]
+
+TASK [grafana : Grafana Docker container] **************************************
+ok: [Lumix888-3]
+
+PLAY [Agama] *******************************************************************
+
+TASK [docker : Docker package] *************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [docker : Log into DockerHub] *********************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [docker : Docker service] *************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [agama : Creating directory /opt/agama] ***********************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [agama : Download agama container file] ***********************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [agama : Build Docker image from the file] ********************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [agama : Create Agama Docker container] ***********************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [agama : Create Agama second container] ***********************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+PLAY [Install and configure loadbalancer for agama] ****************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [keepalived : Install keepalived] *****************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [keepalived : New user keepalived] ****************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [keepalived : Copy keepalived conf] ***************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [keepalived : Copy ha88] **************************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [keepalived : start keepalived] *******************************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [keepalived : Download keepalived exporter and unarchive] *****************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [keepalived : Create keepalived prometheus exporter service] **************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [keepalived : Verify that keepalived exporter is running] *****************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [haproxy : Install haproxy] ***********************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [haproxy : Copy haproxy.conf] *********************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [haproxy : Copy prometheus-haproxy-exporter] ******************************
+ok: [Lumix888-1]
+ok: [Lumix888-2]
+
+TASK [haproxy : start haproxy] *************************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+TASK [haproxy : start haproxy exporter] ****************************************
+ok: [Lumix888-2]
+ok: [Lumix888-1]
+
+PLAY RECAP *********************************************************************
+Lumix888-1                  : ok=85   changed=0    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+Lumix888-2                  : ok=85   changed=0    unreachable=0    failed=0    skipped=5    rescued=0    ignored=0   
+Lumix888-3                  : ok=80   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
++ date
+T 18 jaan  2022 10:54:37 EET

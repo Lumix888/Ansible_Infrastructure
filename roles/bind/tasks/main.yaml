@@ -1,0 +1,125 @@
+- name: Install 'bind9'
+  apt:
+    name:
+      - bind9
+      - python3-dnspython
+  no_log: true 
+
+
+- name: Ensure bind9 is running
+  ansible.builtin.service:
+    name: bind9
+    state: started
+
+
+- name: Configure master file
+  when: inventory_hostname in groups['dns_master']
+  ansible.builtin.template:
+    src: db.domain.j2
+    dest: /var/cache/bind/{{ domain }}
+    force: no
+  no_log: true     
+  notify:
+    - Restart bind9
+    - rndc reload
+
+
+- name: Configure reverse master file
+  when: inventory_hostname in groups['dns_master']
+  ansible.builtin.template:
+    src: db.domain.reverse.j2
+    dest: /var/cache/bind/db.reverse
+    force: no
+  no_log: true    
+  notify:
+    - Restart bind9
+    - rndc reload
+
+
+- name: Copy local conf file to DNS server
+  ansible.builtin.template:
+    src: named.conf.local.j2
+    dest: /etc/bind/named.conf.local
+  no_log: true     
+  notify: Restart bind9
+
+
+- name: Update named.conf.options
+  template: 
+    src: named.conf.options.j2
+    dest: /etc/bind/named.conf.options
+  no_log: true 
+  notify: Restart bind9
+
+
+- name: Copy resolv.conf to DNS server
+  ansible.builtin.template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+  no_log: true 
+  notify: 
+    - rndc reload
+
+
+- name: Stop service systemd-resolved
+  service:
+    name: systemd-resolved
+    state: stopped
+    enabled: no 
+
+
+- name: meta flush
+  meta: flush_handlers
+
+
+- name: Sleep for 10 seconds and continue with play
+  wait_for:
+    timeout: 10
+
+
+- name: Ensure bind9 is running
+  service:
+    name: bind9
+    state: started
+
+
+- name: Set A records
+  when: inventory_hostname in groups["dns_master"]
+  nsupdate:
+    key_algorithm: "hmac-sha256"
+    key_name: "dns_update_key"
+    key_secret: "{{ dns_update_key }}"
+    server: "localhost"
+    zone: "{{ domain }}"
+    record: "{{ item.key }}"
+    type: "A"
+    value: "{{ item.value }}"
+  loop: "{{ dns_a_records | dict2items }}"
+  no_log: true 
+
+  
+- name: Set CNAME records
+  when: inventory_hostname in groups["dns_master"]
+  nsupdate:
+    key_algorithm: "hmac-sha256"
+    key_name: "dns_update_key"
+    key_secret: "{{ dns_update_key }}"
+    server: "localhost"
+    zone: "{{ domain }}"
+    record: "{{ item.key }}"
+    type: "CNAME"
+    value: "{{ item.value }}"
+  loop: "{{ dns_cname_records | dict2items }}"
+  no_log: true 
+
+
+- name: Sleep for 10 seconds and continue with play
+  wait_for:
+    timeout: 10
+
+
+- name: Check if the service is started and if it is not, start it
+  service:
+    name: bind9
+    state: started
+    enabled: yes

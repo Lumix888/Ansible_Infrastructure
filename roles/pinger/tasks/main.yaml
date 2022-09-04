@@ -1,0 +1,56 @@
+- name: Add user pinger
+  user:
+    name: pinger
+
+
+- name: Install 'fping'
+  apt:
+    name: fping
+  no_log: true 
+
+
+- name: Ensure pinger has directory
+  file:
+    path: /etc/pinger
+    state: directory
+  no_log: true 
+
+
+- name: place pinger.sh template into /usr/local/bin/pinger
+  template:
+    src: pinger.sh
+    dest: /usr/local/bin/pinger
+    owner: pinger
+    group: pinger
+    mode: '0744'
+  no_log: true 
+  notify:
+    - Reload daemons
+    - Restart pinger
+
+
+- name: Copy pinger.conf.j2 template into /etc/pinger/pinger.conf
+  template:
+    src: pinger.conf.j2
+    dest: /etc/pinger/pinger.conf
+  no_log: true 
+  notify:
+    - Reload daemons
+    - Restart pinger
+
+
+- name: copy pinger service config
+  template: 
+    src: pinger.service.j2
+    dest: /etc/systemd/system/pinger.service
+  no_log: true 
+  notify:
+    - Reload daemons
+    - Restart pinger
+
+
+- name: Ensure pinger is running
+  service:
+    name: pinger
+    state: started
+    enabled: true

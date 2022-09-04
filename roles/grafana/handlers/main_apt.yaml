@@ -1,0 +1,7 @@
+#grafana handlers not in docker
+
+- name: Restart grafana
+  service:
+    name: grafana-server
+    state: restarted
+    
